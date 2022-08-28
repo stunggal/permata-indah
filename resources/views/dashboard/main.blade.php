@@ -315,7 +315,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Transaksi Terbaru <span>| Hari Ini</span></h5>
+                                    <h5 class="card-title">Barang Menipis <span>| Segera Belanja</span></h5>
 
                                     <table class="table table-borderless datatable">
                                         <thead>
