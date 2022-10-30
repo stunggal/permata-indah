@@ -17,7 +17,12 @@ class BarangFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'foto' => $this->faker->randomElement(['https://picsum.photos/100/100', 'https://picsum.photos/100/100', 'https://picsum.photos/100/100']),
+            'nama_barang' => $this->faker->sentence(),
+            'harga_asli' => $this->faker->randomNumber(5, true),
+            'harga_jual' => $this->faker->randomNumber(5, true),
+            'stok' => $this->faker->randomNumber(5, false),
+            'barcode' => $this->faker->bothify('???-###-???-###'),
         ];
     }
 }

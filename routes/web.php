@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.main');
-});
+Route::get('', [DashboardController::class, 'index']);
+
+Route::get('barang', [BarangController::class, 'index']);
+Route::get('barang/input', [BarangController::class, 'create']);
+Route::post('barang/input', [BarangController::class, 'store']);
+Route::get('barang/update/{barang}', [BarangController::class, 'edit']);
+Route::post('barang/update/{barang}', [BarangController::class, 'update']);

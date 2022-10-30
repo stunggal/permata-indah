@@ -14,7 +14,13 @@ class BarangController extends Controller
      */
     public function index()
     {
-        //
+        $barangs = Barang::all();
+        // echo '<pre>';
+        // print_r($barangs);
+        // die;
+        return view('barang.main', [
+            'barangs' => $barangs,
+        ]);
     }
 
     /**
@@ -24,7 +30,7 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        return view('barang.input');
     }
 
     /**
@@ -35,7 +41,17 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validatedData = $request->validate([
+            'nama_barang' => 'required|string',
+            'harga_asli' => 'required|integer',
+            'harga_jual' => 'required|integer',
+            'stok' => 'required|integer',
+            'barcode' => 'required',
+            'foto' => 'required'
+        ]);
+        Barang::create($validatedData);
+        return redirect('/barang')->with('success', 'Data have been added!');
     }
 
     /**
@@ -57,7 +73,10 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        //
+        // return $barang;
+        return view('barang.update', [
+            "barang" => $barang,
+        ]);
     }
 
     /**
@@ -69,7 +88,18 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        //
+        $validatedData = $request->validate([
+            'nama_barang' => 'required|string',
+            'harga_asli' => 'required|integer',
+            'harga_jual' => 'required|integer',
+            'stok' => 'required|integer',
+            'barcode' => 'required',
+            'foto' => 'required'
+        ]);
+        $Updatebarang = Barang::findOrFail($barang->id);
+        $Updatebarang->update($validatedData);
+        return redirect('/barang')->with('success', 'Data have been updated!');
+        // return view('barang.update');
     }
 
     /**
